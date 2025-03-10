@@ -1,10 +1,10 @@
-
 from datetime import datetime, timedelta
 
 users = [
-    {"name": "John Doe", "birthday": "1985.03.12"},
+    {"name": "John Doe", "birthday": "1985.03.15"},
     {"name": "Jane Smith", "birthday": "1990.01.27"}
 ]
+
 def get_upcoming_birthdays(users: list[dict])-> list[dict]:
     result = []
     today = datetime.today().date()
@@ -20,6 +20,11 @@ def get_upcoming_birthdays(users: list[dict])-> list[dict]:
 
         # Якщо день народження випадає у наступний тиждень
         if today <= birthday_this_year <= next_week:
+            weekday = birthday_this_year.weekday()
+            if weekday == 6:
+                birthday_this_year += timedelta(days=1)
+            elif weekday == 5:
+                birthday_this_year += timedelta(days=2)
             result.append({
                 "name": user["name"],
                 "birthday": birthday_this_year.strftime("%Y-%m-%d")
@@ -27,10 +32,7 @@ def get_upcoming_birthdays(users: list[dict])-> list[dict]:
 
     return result
        
-       
-  
-
-
+   
 upcoming_birthdays = get_upcoming_birthdays(users)
 print("Список привітань на цьому тижні:", upcoming_birthdays)
 

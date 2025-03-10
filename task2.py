@@ -16,7 +16,4 @@ def get_numbers_ticket(min: int, max: int, quantity: int)-> list[int]:
     except ValueError:
         return "Помилка: Введіть числові значення"   
 
-
-
-
 print(get_numbers_ticket(1, 40, 6))

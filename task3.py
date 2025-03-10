@@ -11,16 +11,12 @@ raw_numbers = [
     "38050 111 22 11   ",
 ]
 
-
 def normalize_phone(phone_number:str)-> str:
     pattern = r'\d+'
     result = re.findall(pattern, phone_number)
     result =  ''.join(result)
     result = result[-9:]
     return f'+380{result}'
-
-
-
 
 sanitized_numbers = [normalize_phone(num) for num in raw_numbers]
 print("Нормалізовані номери телефонів для SMS-розсилки:", sanitized_numbers)
